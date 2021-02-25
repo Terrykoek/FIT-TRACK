@@ -11,6 +11,6 @@ const fitSchema = new mongoose.Schema({
     description: { type: String },
 });
 
-const Fits = mongoose.model('Fits',fitSchema);
+const Fits = mongoose.model('Fit',fitSchema);
 
 module.exports = Fits;

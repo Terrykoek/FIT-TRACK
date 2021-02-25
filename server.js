@@ -6,7 +6,7 @@ const app = express();
 const methodOverride = require('method-override');
 const userController = require('./controllers/users.js');
 const sessionsController = require('./controllers/sessions.js');
-const appsController = require('./controllers/apps.js');
+const logicController = require('./controllers/logic.js');
 require('dotenv').config();
 // app.set('views', [__dirname + '/views', __dirname + '/views/app']);
 
@@ -41,7 +41,7 @@ app.get('/', (req,res) => {
 //user and sessions controllers
 app.use('/users', userController);
 app.use('/sessions', sessionsController);
-app.use('/apps', appsController);
+app.use('/logic', logicController);
 
 
 
