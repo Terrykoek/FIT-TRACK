@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('./partials/head.ejs'); -%>
+    </head>
+    
+    <body>
+        <div class="container">
+            <% if(currentUser) { %>
+                <h1>Welcome <%=currentUser.username%>!</h1>
+                <h2><a class="waves-effect waves-light btn" href="/app">Go to main page</a></h2>
+                <form action="/sessions?_method=DELETE" method="POST">
+                    <input type="submit" value="Logout" class="waves-effect waves-light btn"/>
+                </form>
+                
+            <% } else { %>
+                <h1>Tired of feeling fat?</h1>
+                <h2>Start tracking your fitness today! </h2>
+                <a class="waves-effect waves-light btn" href="/sessions/new">Log In</a>
+                <h3>Not yet a member?</h3>
+                <a class="waves-effect waves-light btn" href="/users/new">Register Now</a></h2>
+            <% } %>
+        </div>
+    </body>
+</html>

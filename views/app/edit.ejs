@@ -1,0 +1,63 @@
+!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <%- include('../partials/head.ejs') %>
+    </head>
+    <body>
+        <h1>Edit fitness</h1>
+        <div class="edit-container">
+            <div class="edit-form">
+                <form action="/app/<%=fits.id%>?_method=PUT" method="POST">
+                    exercise:
+                    <input
+                        type="text"
+                        name="exercise"
+                        value="<%=fits.exercise%>"
+                    /><br />
+                    Workout category:
+                    <input
+                        type="text"
+                        name="category"
+                        value="<%=fits.type%>"
+                    /><br />
+                    location:
+                    <input
+                        type="text"
+                        name="location"
+                        value="<%=fits.location%>"
+                    /><br />
+                    Date:
+                    <input
+                    type="date"
+                    name="date"
+                    value="<%=fits.date%>"
+                    /><br />
+                    Image Url:
+                    <input type="text" name = "url" value = <%=fits.url%>"
+                    /><br />
+                    calories:
+                    <input
+                        type="number"
+                        name="calories"
+                        value="<%=fits.calories%>"
+                    /><br />
+
+                    Completed:
+                    <input
+                        type="checkbox"
+                        name="completed"
+                        value="<%=fits.completed%>"
+                    /><br />
+                    Description:
+                    <input
+                        type="text"
+                        name="description"
+                        value="<%=fits.description%>"
+                    /><br />
+                    <input type="submit" name="" value="Submit Changes" />
+                </form>
+                <a href="/app"><button id="home-btn">Home</button></a>
+            </div>
+        </div>
+    </body>
+</html>
