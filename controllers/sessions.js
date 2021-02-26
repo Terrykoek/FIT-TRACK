@@ -10,35 +10,25 @@ sessions.get('/new', (req, res) => {
     res.render('sessions/new.ejs');
 });
 
-//index route
-sessions.get('/', (req, res) => {
-    res.render('index.ejs', {
-        currentUser: req.session.currentUser
-    });
-});
 
 
 // creating new session
-sessions.post('/', (req, res) => {
-    console.log(req.body)
-    User.findOne({username: req.body.username}, (err, foundUser) => {
-        //if db  error handle the db error
-        if(err) {
-            console.log(err);
-            res.send(`oops! something went wrong`);
-        } else if (!foundUser) {
-            res.send(`user not found!`);
+sessions.post("/", (req, res) => {
+    User.findOne({ username: req.body.username }, (err, foundUser) => {
+      if (!foundUser) {
+        res.redirect("/sessions/new");
+        console.log("no user found");
+      } else {
+        if (bcrypt.compareSync(req.body.password, foundUser.password)) {
+          req.session.currentUser = foundUser;
+          res.redirect("/");
         } else {
-            if(req.body.password == foundUser.password) {
-                req.session.currentUser = foundUser
-                res.redirect('/');
-            } else {
-                //if passwords don't match, handle the error
-                res.send('<a href="/">wrong password</a>');
-            };
-        };
+          console.log("wrong password");
+          res.redirect("/sessions/new");
+        }
+      }
     });
-});
+  });
 
 // Destroy sessions
 sessions.delete('/', (req, res) => {

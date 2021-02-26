@@ -1,22 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New</title>
-</head>
-<body>
-  <form action="/app" method="POST">
-    Exercise (gym/running/swimming): <input type="text" name="exercise">
-    Type (cardio/strength/flexibility/balance): <input type="text" name="type">
-    Location: <input type="text" name="location">
-    Date: <input type="date" name="date">
-    Image URL: <input type="text" name="img">
-    Calories burned: <input type="text" name="calories">
-    Completed: <input type="checkbox" name="completed">
-    Description: <input type="text" name="description">
-    <input type="submit" value="SAVE THIS WORKOUT">
-  </form>
-</body>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+      <h1>what's the plan?</h1>
+      <form action="/app" method="POST">
+        <label for="exercise">Exercise gym/run/swim</label>
+        <input type="text" name="exercise" id="exercise"/>
+        <br><label for="type">Type (cardio/strength/flexibility/balance)</label>
+        <input type="text" name="type" id="type"/>
+        <br><label for="location">location</label>
+        <input type="text" name="location" id="location"/>
+        <br>Date: <input type="date" name="date">
+        <br>Image URL: <input type="text" name="img">
+        <br>Calories burned: <input type="text" name="calories">
+        <br> Completed: <input type="checkbox" name="completed">
+        <br>Description: <input type="text" name="description">
+        <br><input type="submit" value="SAVE THIS WORKOUT">
+
+      </form>
+    </body>
 </html>

@@ -10,6 +10,7 @@ const logicController = require('./controllers/logic.js');
 require('dotenv').config();
 // app.set('views', [__dirname + '/views', __dirname + '/views/app']);
 
+
 //CONFIGURATION
 const port = process.env.PORT || 5000;
 const mongoURI = process.env.MONGODB_URI || 'localhost:27017/fitnesstracker';
@@ -30,6 +31,20 @@ mongoose.connection.on('error', (err) => console.log(err.message + ' is Mongod n
 mongoose.connection.on('connected', () => console.log('mongo connected: ', mongoURI));
 mongoose.connection.on('disconnected', () => console.log('mongo disconnected'));
 
+// check auth
+const isAuthenticated = (req, res, next) => {
+    // console.log(req.session.currentUser);
+    if (req.session.currentUser) {
+        return next();
+    } else {
+        res.redirect('/sessions/new');
+    }
+};
+
+//user and sessions controllers
+app.use('/users', userController);
+app.use('/sessions', sessionsController);
+app.use('/logic', logicController);
 
 //Index Page
 app.get('/', (req,res) => {
@@ -37,12 +52,6 @@ app.get('/', (req,res) => {
         currentUser: req.session.currentUser
     });
 });
-
-//user and sessions controllers
-app.use('/users', userController);
-app.use('/sessions', sessionsController);
-app.use('/logic', logicController);
-
 
 
 app.get('/app', (req, res)=>{
