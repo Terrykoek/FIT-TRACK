@@ -1,75 +1,155 @@
 const express = require('express');
-const logic = express.Router();
-const Fits = require('../models/fits.js');
+const  Mongoose  = require('mongoose');
+const  update  = require('../models/users.js');
+const router = express.Router();
 const User = require('../models/users.js');
 
+//MIDDLEWARE
 const isAuthenticated = (req, res, next) => {
-  if (req.session.currentUser) {
-      return next();
-  } else {
-      res.redirect('/sessions/new');
-  }
+    if (req.session.currentUser) {
+        return next();
+    } else {
+        res.redirect('/sessions/new');
+    }
 };
 
-
-//New route
-logic.get('/new', isAuthenticated, (req, res) => {
-    res.render('app/new.ejs',{
-    //   currentUser: req.session.currentUser,
-});
+// new route - new workout form
+router.get('/new', (req, res) => {
+    res.render('app/new.ejs');
 });
 
+// create route - adding new workout to a user's db
+router.post('/', (req, res) => {
+    if (req.body.completed === 'on') {
+        req.body.completed = true;
+    }
+    User.findOneAndUpdate(
+        { _id: req.session.currentUser._id },
+        {
+            $push: {
+                fits: {
+                    exercise: req.body.exercise,
+                    type: req.body.type,
+                    location: req.body.location,
+                    date: req.body.date,
+                    img: req.body.img,
+                    calories: req.body.calories,
+                    completed: req.body.completed,
+                },
+            },
+        },
+        (error, newFit) => {
+            res.redirect('/app');
+        },
+    );
+});
 
-
-// create route 
-// logic.post('/app', (req, res) => {
-//       User.findOneAndUpdate(
-//         { _id: req.session.currentUser._id },
-//         {
-//             $push: {
-//                 fits: {
-//                     exercise: req.body.exercise,
-//                 },
-//             },
-//         },
-//         (error, newFit) => {
-//             res.redirect('/app');
-//         },
-//     );
-// });
-
-// index route - User's main page
-logic.get('/', isAuthenticated, (req, res) => {
+// index route - fits user's main page
+router.get('/', isAuthenticated, (req, res) => {
     // finds all users
-    User.find({}, (err, foundUsers) => {
-      res.render('app/index.ejs', {
-        users: foundUsers,
-        currentUser: req.session.currentUser
-      });
+    User.findById({ _id: req.session.currentUser._id }, (err, currentUser) => {
+        // renders the dashboard
+        res.render('app/index.ejs', {
+            currentUser: currentUser,
+        });
     });
-  });
-
-logic.get('/app', (req, res)=>{
-	Fits.find({}, (err, foundfits)=>{
-		res.render('app/index.ejs', {
-			fits: foundfits
-		});
-	})
-});
-  
-logic.post('/app', (req, res)=>{
-	Fits.create(req.body, (err, createdfits)=>{
-		res.redirect('/');
-	});
 });
 
-  // Show route
-logic.get("/:id", (req, res) => {
-	Fits.findById(req.params.id, (err, foundFit) => {
-	  res.render("show.ejs", {
-		fit: foundFit,
-	  });
-	});
-  });
+// show route
+router.get('/:id', (req, res) => {
+    //console.log(req.session.currentUser._id);
+    //console.log(req.params._id);
+    User.find(
+        { _id: req.session.currentUser._id },
+        {
+            fits: {
+                $elemMatch: {
+                    _id: req.params.id,
+                },
+            },
+        },
+        {
+            'fits.$': 1,
+        },
+        function (err, results) {
+            // console.log(results[0].fits[0]);
+            res.render('app/show.ejs', {
+                fit: results[0].fits[0],
+            });
+        },
+    );
+});
 
-module.exports = logic;
+// delete route
+router.delete('/:id', (req, res) => {
+    User.findByIdAndUpdate(
+        { _id: req.session.currentUser._id },
+        { $pull: { fits: { _id: req.params.id } } },
+        { new: true },
+        function (error, model) {
+            if (error) {
+                return res.json(error);
+            } else {
+                return res.redirect('/app');
+            }
+        },
+    );
+});
+
+// edit route
+router.get('/:id/edit', (req, res) => {
+    // console.log(req.session.currentUser._id);
+    User.find(
+        { _id: req.session.currentUser._id },
+        {
+            fits: {
+                $elemMatch: { _id: req.params.id },
+            },
+        },
+        { 'fits.$': 1 },
+        function (error, user) {
+            //console.log(user[0].fits[0]);
+            res.render('app/edit.ejs', {
+                fit: user[0].fits[0],
+            });
+        },
+    );
+});
+
+// put route - update
+router.put('/:id', (req, res) => {
+    const catFromForm = req.body.location;
+    const location = catFromForm.split(',');
+    const userID = req.session.currentUser._id;
+    const fitID = req.params.id;
+    // console.log('this is res.params.id ' + req.params.id);
+    // console.log('this is user object id ' + req.session.currentUser._id);
+    if (req.body.completed === 'on') {
+        req.body.completed = true;
+    }
+    User.updateOne(
+        { _id: userID, 'fits._id': fitID },
+        {
+            $set: {
+                'fits.$.exercise': req.body.exercise,
+                'fits.$.type': req.body.type,
+                'fits.$.location': location,
+                'fits.$.date': req.body.date,
+                'fits.$.img': req.body.img,
+                'fits.$.calories': req.body.calories,
+                'fits.$.completed': req.body.completed,
+                'fits.$.description': req.body.description,
+
+            },
+        },
+        { new: true },
+        (err, updatedFit) => {
+        
+            res.redirect('/app/' + req.params.id);
+        },
+    );
+});
+
+router.put('/:id', (req, res) => {});
+
+module.exports = router;

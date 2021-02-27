@@ -1,25 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
     <head>
-        <meta charset="utf-8">
-        <title></title>
+        <%- include('../partials/head.ejs') %>
     </head>
     <body>
-      <h1>what's the plan?</h1>
-      <form action="/app" method="POST">
-        <label for="exercise">Exercise gym/run/swim</label>
-        <input type="text" name="exercise" id="exercise"/>
-        <br><label for="type">Type (cardio/strength/flexibility/balance)</label>
-        <input type="text" name="type" id="type"/>
-        <br><label for="location">location</label>
-        <input type="text" name="location" id="location"/>
-        <br>Date: <input type="date" name="date">
-        <br>Image URL: <input type="text" name="img">
-        <br>Calories burned: <input type="text" name="calories">
-        <br> Completed: <input type="checkbox" name="completed">
-        <br>Description: <input type="text" name="description">
-        <br><input type="submit" value="SAVE THIS WORKOUT">
-
-      </form>
+        <div class="header">
+            <div class="header-title">
+               
+            </div>
+        </div>
+        <div class="title">
+            <h1>Add New Exercise</h1>
+        </div>
+        <div class="header-nav">
+            <ul>
+                <li>
+                    <form action="/sessions?_method=DELETE" method="POST">
+                        <input type="submit" value="Logout" id="logout-btn" />
+                    </form>
+                </li>
+                <li>
+                    <a href="/app">
+                        <button id="home-btn">Dashboard</button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="new-show">
+            <form action="/app" method="POST">
+                Exercise (gym/run/swim): <input type="text" name="exercise" required /><br />
+                Type (cardio/strength/flexibility): <input type="text" name="type" required /><br />
+                location: <input type="text" name="location" required /><br />
+                Date: <input type="date" name ="date" /><br />
+                Image Url: <input type="text" name="url"  /><br />
+                Calories burned: <input type="number" name="calories" required /><br />
+                Completed : <input type="checkbox" name="completed" />
+                <br />
+                Description:
+                <input type="text" name="description" /><br />
+                <input type="submit" name="insert" value="insert" />
+                <br />
+            </form>
+        </div>
     </body>
 </html>

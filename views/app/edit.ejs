@@ -1,62 +1,71 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
         <%- include('../partials/head.ejs') %>
     </head>
     <body>
-        <h1>Edit fitness</h1>
+        <div class="header">
+            <div class="header-exercise">
+               
+                <a href="/">fit Stopper</a>
+            </div>
+        </div>
+        <div class="exercise">
+            <h1>Edit fit</h1>
+        </div>
+        <div class="header-nav">
+            <ul>
+                <li>
+                    <form action="/sessions?_method=DELETE" method="POST">
+                        <input type="submit" value="Logout" id="logout-btn" />
+                    </form>
+                </li>
+                <li>
+                    <a href="/">
+                        <button id="home-btn">Dashboard</button>
+                    </a>
+                </li>
+            </ul>
+        </div>
         <div class="edit-container">
             <div class="edit-form">
-                <form action="/app/<%=fits.id%>?_method=PUT" method="POST">
+                <form action="/app/<%=fit.id%>?_method=PUT" method="POST">
                     exercise:
                     <input
                         type="text"
                         name="exercise"
-                        value="<%=fits.exercise%>"
+                        value="<%=fit.exercise%>"
                     /><br />
-                    Workout category:
+                    Image Url:
+                    <input type="text" name="url" value="<%=fit.url%>" /><br />
+                    type:
                     <input
                         type="text"
-                        name="category"
-                        value="<%=fits.type%>"
+                        name="type"
+                        value="<%=fit.type%>"
                     /><br />
                     location:
                     <input
-                        type="text"
+                        type="number"
                         name="location"
-                        value="<%=fits.location%>"
-                    /><br />
-                    Date:
-                    <input
-                    type="date"
-                    name="date"
-                    value="<%=fits.date%>"
-                    /><br />
-                    Image Url:
-                    <input type="text" name = "url" value = <%=fits.url%>"
-                    /><br />
-                    calories:
+                        value="<%=fit.location%>"
+                    /><br />calories:
                     <input
                         type="number"
                         name="calories"
-                        value="<%=fits.calories%>"
+                        value="<%=fit.calories%>"
                     /><br />
-
-                    Completed:
-                    <input
-                        type="checkbox"
-                        name="completed"
-                        value="<%=fits.completed%>"
-                    /><br />
-                    Description:
+                    Completed: <input type="checkbox" name="completed" <%
+                    if(fit.completed === true) { %> checked <% } %> />
+                    <br />
+                    description:
                     <input
                         type="text"
                         name="description"
-                        value="<%=fits.description%>"
+                        value="<%=fit.description%>"
                     /><br />
-                    <input type="submit" name="" value="Submit Changes" />
+                    <input type="submit" name="" value="Submit" />
                 </form>
-                <a href="/app"><button id="home-btn">Home</button></a>
             </div>
         </div>
     </body>

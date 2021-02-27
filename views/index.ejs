@@ -1,31 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
     <head>
-        <%- include('./partials/head.ejs'); -%>
+        <%- include('./partials/head.ejs')%>
     </head>
-    
-    <style>
-        h1{
-            font-weight: bold;
-            color: rgb(40, 60, 238)
-        }
-    </style>
     <body>
-        <div class="container">
-            <% if(currentUser) { %>
-                <h1>Welcome <%=currentUser.username%>!</h1>
-                <h2><a class="waves-effect waves-light btn" href="/app">Go to main page</a></h2>
-                <form action="/sessions?_method=DELETE" method="POST">
-                    <input type="submit" value="Logout" class="waves-effect waves-light btn"/>
-                </form>
+        <div class="header">
+            <div class="header-title">
                 
-            <% } else { %>
-                <h1>Tired of feeling fat?</h1>
-                <h2>Start tracking your fitness today! </h2>
-                <a class="waves-effect waves-light btn" href="/sessions/new">Log In</a>
-                <h3>Not yet a member?</h3>
-                <a class="waves-effect waves-light btn" href="/users/new">Register Now</a></h2>
-            <% } %>
+                <a href="/">Fit Track</a>
+            </div>
+        </div>
+        <div class="main-container">
+            <div class="main-col">
+                <h2>
+                    <% if(currentUser) { %> Welcome, <%=currentUser.username%>!
+                    <br />
+                    <h2>
+                        <a class="dashboard" href="/app">
+                            <button> Dashboard</button>
+                        </a>
+                    </h2>
+                    <form action="/sessions?_method=DELETE" method="POST">
+                        <input type="submit" value="Logout" id="logout-btn" />
+                    </form>
+                </h2>
+                <% } else { %>
+                <h1>Tired of not sticking to your workout plans?</h1>
+                <div class="articles">
+                    <article>
+                        Fitness Tracker is an app to track all your workout plans
+                    </article>
+                    <br />
+                    <article>
+                        Achieve your dream body today
+                       
+                    </article>
+                    <br />
+                </div>
+            </div>
+            <div class="main-col">
+                <h3>Welcome Back</h3>
+                <a href="/sessions/new">
+                    <button id="login">Log In</button>
+                </a>
+                <br />
+                <h3>Register now</h3>
+                <a href="/users/new">
+                    <button id="signup">Register now</button>
+                </a>
+                <% } %>
+            </div>
         </div>
     </body>
 </html>

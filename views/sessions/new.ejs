@@ -1,27 +1,57 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <%- include('../partials/head.ejs'); -%>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Log In</h1>
-      <div class="row">
-        <form class="col s12" action="/sessions" method="POST">
-          <div class="row">
-            <div class="input-field col s6">
-              <input placeholder="Username" id="username" type="text" class="validate" name="username" required>
+    <head>
+        <%- include('../partials/head.ejs') %>
+    </head>
+    <body>
+        <div class="header">
+            <div class="header-title">
+                
+                <a href="/"> - Log In</a>
             </div>
-          </div>
-
-          <div class="row">
-            <div class="input-field col s12">
-              <input placeholder="Password" id="password" type="password" class="validate" name="password" required>
+        </div>
+        <div class="container">
+            <br />
+            <h1>Welcome Back!</h1>
+            <div class="row">
+                <form class="col s12" action="/sessions" method="POST">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <label for="username">User Name</label>
+                            <input
+                                placeholder="username"
+                                id="username"
+                                type="text"
+                                class="validate"
+                                name="username"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label for="password">Password</label>
+                            <input
+                                placeholder="password"
+                                id="password"
+                                type="password"
+                                class="validate"
+                                name="password"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <br />
+                    <button
+                        class="btn waves-effect waves-light"
+                        type="submit"
+                        name="action"
+                    >
+                        Submit
+                    </button>
+                </form>
             </div>
-          </div>
-
-          <button class="btn waves-effect waves-light" type="submit">Submit</button>
-        </form>
-      </div>
-  </body>
+        </div>
+    </body>
 </html>

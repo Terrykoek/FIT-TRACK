@@ -1,28 +1,71 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<%- include('../partials/head.ejs'); -%>
-	</head>
-
-	<style>
-        h1{
-            color: rgb(40, 60, 238)
-        }
-    </style>
-	<body>
-		
-		<header>
-			<h1>Exercise plan</h1>			
-			<nav>
-				<ul>
-					<li>
-						<a href="/">Home</a>
-					</li>
-						<a href="/logic/new">CREATE PLAN</a>
-					</li>
-				</ul>
-			</nav>
-		</header>
-	</body>
+<html lang="en" dir="ltr">
+    <head>
+        <%- include('../partials/head.ejs') %>
+    </head>
+    <body>
+        <div class="header">
+            
+                <h1><%=currentUser.username%>'s Dashboard</h1>
+            </div>
+        </div>
+        <div class="header-nav">
+            <ul>
+                <li>
+                    <form action="/sessions?_method=DELETE" method="POST">
+                        <input type="submit" value="Logout" id="logout-btn" />
+                    </form>
+                </li>
+            </ul>
+        </div>
+        <div class="index-container">
+            <div class="index-shows">
+                <a href="/app/new"><button id="index-add">Add New exercise</button></a>
+                <ul id="index-ul">
+                    <% for(let i = 0; i <currentUser.fits.length; i++) { %> 
+                        <li class="index-show">
+                            Exercise: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-title">
+                                <%=currentUser.fits[i].exercise; %> </a>
+                            <br />
+                            Type: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-title">
+                                <%=currentUser.fits[i].type; %> </a>
+                            <br />
+                            Location: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-title">
+                                <%=currentUser.fits[i].location; %> </a>
+                            <br />
+                            Date: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-title">
+                                <%=currentUser.fits[i].date; %> </a>
+                            <br />
+                            Calories burned: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-title">
+                                <%=currentUser.fits[i].calories; %> </a>
+                            <br />
+                            Completed: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-title">
+                                <%=currentUser.fits[i].completed; %> </a>
+                            <br />
+                            Description: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-title">
+                                <%=currentUser.fits[i].description; %> </a>
+                            <br />
+                            
+                            <a href="/app/<%=currentUser.fits[i]._id; %>">
+                                <img
+                                    id="index-img"
+                                    src="<%=currentUser.fits[i].url%>"
+                                    alt="<%=currentUser.fits[i].title%>"
+                                />
+                            </a>
+                            <br />
+                            <a href="/app/<%=currentUser.fits[i]._id%>/edit"
+                                ><button id="edit">Edit</button></a
+                            >
+                            <form
+                            action="/app/<%=currentUser.fits[i]._id%>?_method=DELETE"
+                            method="POST">
+                            <input type="submit" id="delete-btn" value="DELETE" />
+                            </form>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </body>
 </html>
