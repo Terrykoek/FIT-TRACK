@@ -1,6 +1,5 @@
 const express = require('express');
 const logic = express.Router();
-// const fit = require('../models/fits.js');
 const Fits = require('../models/fits.js');
 const User = require('../models/users.js');
 
@@ -14,51 +13,63 @@ const isAuthenticated = (req, res, next) => {
 
 
 //New route
-logic.get('/new', (req, res) => {
-    res.render('app/new.ejs');
+logic.get('/new', isAuthenticated, (req, res) => {
+    res.render('app/new.ejs',{
+    //   currentUser: req.session.currentUser,
+});
 });
 
 
 
-// create route
-logic.post('/', (req, res) => {
-    logic.create(req.body, (error, createdfit) => {
-        // res.send(createdfit);
-        res.redirect('/app');
-    });
-});
+// create route 
+// logic.post('/app', (req, res) => {
+//       User.findOneAndUpdate(
+//         { _id: req.session.currentUser._id },
+//         {
+//             $push: {
+//                 fits: {
+//                     exercise: req.body.exercise,
+//                 },
+//             },
+//         },
+//         (error, newFit) => {
+//             res.redirect('/app');
+//         },
+//     );
+// });
 
-// index route - shows user's main page
+// index route - User's main page
 logic.get('/', isAuthenticated, (req, res) => {
     // finds all users
     User.find({}, (err, foundUsers) => {
-      // renders the order page
       res.render('app/index.ejs', {
-        // passes the found users to the room page
         users: foundUsers,
         currentUser: req.session.currentUser
       });
     });
   });
 
-
-// // Show route
-// logic.get("/:id", (req, res) => {
-//     Fits.findById(req.params.id, (err, foundfit) => {
-//       res.render("app/show.ejs", {
-//         fit: foundfit,
-//       });
-//     });
-//   });
-
+logic.get('/app', (req, res)=>{
+	Fits.find({}, (err, foundfits)=>{
+		res.render('app/index.ejs', {
+			fits: foundfits
+		});
+	})
+});
   
-// // POST route
-// logic.post("/newexercise", (req, res) => {
-//     Fits.create(req.body, (err, createdfit) => {
-//       if (createdfit) res.redirect("/app")
-//       else throw err;
-//     });
-//   });
+logic.post('/app', (req, res)=>{
+	Fits.create(req.body, (err, createdfits)=>{
+		res.redirect('/');
+	});
+});
 
+  // Show route
+logic.get("/:id", (req, res) => {
+	Fits.findById(req.params.id, (err, foundFit) => {
+	  res.render("show.ejs", {
+		fit: foundFit,
+	  });
+	});
+  });
 
 module.exports = logic;
