@@ -22,14 +22,18 @@ body {
     color: rgb(14, 255, 14);
     font-size: 80px;
     text-align: center;
-   
-
 }
+
+.articles{
+    margin-top: 50px;
+    margin-bottom: 70px;
+}
+
 
 /*Login page */
 #login{
     color: rgb(14, 255, 14);
-
+    
 }
 
 /*Account create */
