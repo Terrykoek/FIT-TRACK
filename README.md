@@ -6,7 +6,6 @@ Application Description
 Technologies
 Approaches Taken
 User Stories
-Accomplishments
 Difficulties faced
 User Stories
 RESTFUL Routes
@@ -18,11 +17,15 @@ RESTFUL Routes
 This application alows users to create workout plans to track individual's workout plans
 
 ## Technologies
+Node.js
+Mongoose
+Express 
 EJS
 Method-override
 Bcrypt
 Express-session
-Boostrap
+include all RESTful routes and full CRUD application
+Deployed via Heroku
 
 
 ## Approaches Taken
@@ -31,15 +34,17 @@ set up database with collections and schema validation in the MongoDB
 built authentication page
 linked the app to heroku
 modular testing on the upload file with cloudinary and multer.
-initially this is not in the full code, after basic functional test completed, implement it to the routes.
 
 follow the initial wireframe design and user stories
 started with show route for albums, then images, comments and lastly users.
 
-## Accomplishments
 
 ## Difficulties faced
 
 ## User Stories
 
 ## RESTFUL Routes
+
+## Additional features
+Notifications
+Enhance users profile-

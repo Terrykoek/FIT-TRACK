@@ -12,13 +12,13 @@ const isAuthenticated = (req, res, next) => {
     }
 };
 
-// new workout form
+// new workout
 router.get('/new', (req, res) => {
     res.render('app/new.ejs');
 });
 
 
-// homepage
+// Homepage
 router.get('/', isAuthenticated, (req, res) => {
     // finds all users
     User.findById({ _id: req.session.currentUser._id }, (err, currentUser) => {
@@ -56,6 +56,8 @@ router.post('/', (req, res) => {
 
 // show route
 router.get('/:id', (req, res) => {
+    //console.log(req.session.currentUser._id);
+    //console.log(req.params._id);
     User.find(
         { _id: req.session.currentUser._id },
         {
@@ -76,7 +78,7 @@ router.get('/:id', (req, res) => {
     );
 });
 
-// delete route
+// Delete route
 router.delete('/:id', (req, res) => {
     User.findByIdAndUpdate(
         { _id: req.session.currentUser._id },
@@ -94,7 +96,6 @@ router.delete('/:id', (req, res) => {
 
 // edit route
 router.get('/:id/edit', (req, res) => {
-    // console.log(req.session.currentUser._id);
     User.find(
         { _id: req.session.currentUser._id },
         {
@@ -104,7 +105,6 @@ router.get('/:id/edit', (req, res) => {
         },
         { 'fits.$': 1 },
         function (error, user) {
-            //console.log(user[0].fits[0]);
             res.render('app/edit.ejs', {
                 fit: user[0].fits[0],
             });
@@ -112,14 +112,12 @@ router.get('/:id/edit', (req, res) => {
     );
 });
 
-// put route - update
+//put route
 router.put('/:id', (req, res) => {
-    const catFromForm = req.body.location;
-    const location = catFromForm.split(',');
+    const locate = req.body.location;
+    const location = locate.split(',');
     const userID = req.session.currentUser._id;
     const fitID = req.params.id;
-    // console.log('this is res.params.id ' + req.params.id);
-    // console.log('this is user object id ' + req.session.currentUser._id);
     if (req.body.completed === 'on') {
         req.body.completed = true;
     }
@@ -131,7 +129,6 @@ router.put('/:id', (req, res) => {
                 'fits.$.type': req.body.type,
                 'fits.$.location': location,
                 'fits.$.date': req.body.date,
-                'fits.$.img': req.body.img,
                 'fits.$.calories': req.body.calories,
                 'fits.$.completed': req.body.completed,
                 'fits.$.description': req.body.description,
@@ -140,7 +137,6 @@ router.put('/:id', (req, res) => {
         },
         { new: true },
         (err, updatedFit) => {
-        
             res.redirect('/app/' + req.params.id);
         },
     );

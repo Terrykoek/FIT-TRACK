@@ -5,14 +5,20 @@
     </head>
     <body>
         
+        <div class="topnav">
+            <a class="fittrack">FIT-TRACK</a>
+        </div>
+          </div>
+
         <div class="main-container">
             <div class="main-col">
                 <h2>
-                    <% if(currentUser) { %> Welcome, <%=currentUser.username%>!
+                    <% if(currentUser) { %> Hello <%=currentUser.username%>!
+                        Let's get started!
                     <br />
                     <h2>
                         <a class="dashboard" href="/app">
-                            <button> Dashboard</button>
+                            <button> Home Page</button>
                         </a>
                     </h2>
                     <form action="/sessions?_method=DELETE" method="POST">
@@ -23,25 +29,25 @@
                 <h1>Tired of not sticking to your workout plans?</h1>
                 <div class="articles">
                     <article>
+                        ABOUT US<br>
                         Fitness Tracker is an app to track all your workout plans
                     </article>
                     <br />
                     <article>
                         Achieve your dream body today
-                       
                     </article>
                     <br />
                 </div>
             </div>
-            <div class="main-col">
-                <h3>Welcome Back</h3>
+            <div class="login">
+                <h3>Login to your account</h3>
                 <a href="/sessions/new">
                     <button id="login">Log In</button>
                 </a>
                 <br />
-                <h3>Register now</h3>
+                <h3>Join us</h3>
                 <a href="/users/new">
-                    <button id="signup">Register now</button>
+                    <button id="login">Register</button>
                 </a>
                 <% } %>
             </div>

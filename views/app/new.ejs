@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="title">
-            <h1>Add New Exercise</h1>
+            <h1>Create new workout</h1>
         </div>
         <div class="header-nav">
             <ul>
@@ -21,18 +21,18 @@
                 </li>
                 <li>
                     <a href="/app">
-                        <button id="home-btn">Dashboard</button>
+                        <button id="home-btn">Home</button>
                     </a>
                 </li>
             </ul>
         </div>
-        <div class="new-show">
+        <div class="new-workout">
             <form action="/app" method="POST">
                 Exercise (gym/run/swim): <input type="text" name="exercise" required /><br />
                 Type (cardio/strength/flexibility): <input type="text" name="type" required /><br />
                 Location: <input type="text" name="location" required /><br />
                 Date: <input type="date" name ="date" /><br />
-                Calories burned: <input type="number" name="calories" required /><br />
+                Calories burned: <input type="text" name="calories" required /><br />
                 Completed : <input type="checkbox" name="completed" />
                 <br />
                 Description: <input type="text" name="description" /><br />

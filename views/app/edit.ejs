@@ -1,50 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <%- include('../partials/head.ejs') %>
-    </head>
-    <body>
-        <div class="header">
-          
+
+<head>
+    <%- include('../partials/head.ejs') %>
+</head>
+
+<body>
+    <div class="header">
+
+    </div>
+    <div class="exercise">
+        <h1>Edit workplan</h1>
+    </div>
+    <div class="header-nav">
+        <ul>
+            <li>
+                <form action="/sessions?_method=DELETE" method="POST">
+                    <input type="submit" value="Logout" id="logout-btn" />
+                </form>
+            </li>
+            <li>
+                <a href="/">
+                    <button id="home-btn">Homepage</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="edit-container">
+        <div class="edit-form">
+            <form action="/app/<%=fit.id%>?_method=PUT" method="POST">
+                Exercise:
+                <input type="text" name="exercise" value="<%=fit.exercise%>" /><br />
+                Type:
+                <input type="text" name="type" value="<%=fit.type%>" /><br />
+                Location:
+                <input type="text" name="location" value="<%=fit.location%>" /><br />
+                Date:
+                <input type="date" name="Date" value="<%=fit.date%>" /><br />
+                Calories burned:
+                <input type="text" name="calories" value="<%=fit.calories%>" /><br />
+                Completed: <input type="checkbox" name="completed" <% if(fit.completed===true) { %> checked <% } %> />
+                    <br />
+                    Description:
+                    <input type="text" name="description" value="<%=fit.description%>" /><br />
+                    <input type="submit" name="" value="Submit" />
+            </form>
         </div>
-        <div class="exercise">
-            <h1>Edit workplan</h1>
-        </div>
-        <div class="header-nav">
-            <ul>
-                <li>
-                    <form action="/sessions?_method=DELETE" method="POST">
-                        <input type="submit" value="Logout" id="logout-btn" />
-                    </form>
-                </li>
-                <li>
-                    <a href="/">
-                        <button id="home-btn">Dashboard</button>
-                        </a>
-                        </li>
-                        </ul>
-                        </div>
-                        <div class="edit-container">
-                            <div class="edit-form">
-                                <form action="/app/<%=fit.id%>?_method=PUT" method="POST">
-                                    Exercise:
-                                    <input type="text" name="exercise" value="<%=fit.exercise%>" /><br />
-                                    Type:
-                                    <input type="text" name="type" value="<%=fit.type%>" /><br />
-                                    Location:
-                                    <input type="text" name="location" value="<%=fit.location%>" /><br />
-                                    Date:
-                                    <input type="date" name="Date" value="<%=fit.date%>" /><br />
-                                    Calories burned:
-                                    <input type="number" name="calories" value="<%=fit.calories%>" /><br />
-                                   
-                                    Completed: <input type="checkbox" name="completed" <% if(fit.completed===true) { %> checked <% } %> />
-                                        <br />
-                                    Description:
-                                        <input type="text" name="description" value="<%=fit.description%>" /><br />
-                                        <input type="submit" name="" value="Submit" />
-                                </form>
-                            </div>
-                        </div>
-                        </body>
+    </div>
+</body>
+
 </html>
