@@ -1,6 +1,5 @@
-const express = require('express');
 const  Mongoose  = require('mongoose');
-const  update  = require('../models/users.js');
+const express = require('express');
 const router = express.Router();
 const User = require('../models/users.js');
 
@@ -13,12 +12,23 @@ const isAuthenticated = (req, res, next) => {
     }
 };
 
-// new route - new workout form
+// new workout form
 router.get('/new', (req, res) => {
     res.render('app/new.ejs');
 });
 
-// create route - adding new workout to a user's db
+
+// homepage
+router.get('/', isAuthenticated, (req, res) => {
+    // finds all users
+    User.findById({ _id: req.session.currentUser._id }, (err, currentUser) => {
+        res.render('app/index.ejs', {
+            currentUser: currentUser,
+        });
+    });
+});
+
+// create route
 router.post('/', (req, res) => {
     if (req.body.completed === 'on') {
         req.body.completed = true;
@@ -32,7 +42,6 @@ router.post('/', (req, res) => {
                     type: req.body.type,
                     location: req.body.location,
                     date: req.body.date,
-                    img: req.body.img,
                     calories: req.body.calories,
                     completed: req.body.completed,
                 },
@@ -44,21 +53,9 @@ router.post('/', (req, res) => {
     );
 });
 
-// index route - fits user's main page
-router.get('/', isAuthenticated, (req, res) => {
-    // finds all users
-    User.findById({ _id: req.session.currentUser._id }, (err, currentUser) => {
-        // renders the dashboard
-        res.render('app/index.ejs', {
-            currentUser: currentUser,
-        });
-    });
-});
 
 // show route
 router.get('/:id', (req, res) => {
-    //console.log(req.session.currentUser._id);
-    //console.log(req.params._id);
     User.find(
         { _id: req.session.currentUser._id },
         {
@@ -72,7 +69,6 @@ router.get('/:id', (req, res) => {
             'fits.$': 1,
         },
         function (err, results) {
-            // console.log(results[0].fits[0]);
             res.render('app/show.ejs', {
                 fit: results[0].fits[0],
             });

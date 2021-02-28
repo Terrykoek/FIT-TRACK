@@ -19,52 +19,40 @@
             </ul>
         </div>
         <div class="index-container">
-            <div class="index-shows">
+            <div class="index-add">
                 <a href="/app/new"><button id="index-add">Add New exercise</button></a>
                 <ul id="index-ul">
                     <% for(let i = 0; i <currentUser.fits.length; i++) { %> 
                         <li class="index-show">
-                            Exercise: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-title">
+                            Exercise: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-info">
                                 <%=currentUser.fits[i].exercise; %> </a>
                             <br />
-                            Type: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-title">
+                            Type: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-info">
                                 <%=currentUser.fits[i].type; %> </a>
                             <br />
-                            Location: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-title">
+                            Location: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-info">
                                 <%=currentUser.fits[i].location; %> </a>
                             <br />
-                            Date: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-title">
+                            Date: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-info">
                                 <%=currentUser.fits[i].date; %> </a>
                             <br />
-                            Calories burned: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-title">
+                            Calories burned: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-info">
                                 <%=currentUser.fits[i].calories; %> </a>
                             <br />
-                            Completed: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-title">
+                            Completed: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-info">
                                 <%=currentUser.fits[i].completed; %> </a>
                             <br />
-                            Description: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-title">
+                            Description: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-info">
                                 <%=currentUser.fits[i].description; %> </a>
                             <br />
                             
-                            <a href="/app/<%=currentUser.fits[i]._id; %>">
-                                <img
-                                    id="index-img"
-                                    src="<%=currentUser.fits[i].url%>"
-                                    alt="<%=currentUser.fits[i].title%>"
-                                />
-                            </a>
-                            <br />
-                            <a href="/app/<%=currentUser.fits[i]._id%>/edit"
-                                ><button id="edit">Edit</button></a
-                            >
-                            <form
-                            action="/app/<%=currentUser.fits[i]._id%>?_method=DELETE"
-                            method="POST">
-                            <input type="submit" id="delete-btn" value="DELETE" />
+                            <br /><a href="/app/<%=currentUser.fits[i]._id%>/edit"><button id="edit">Edit</button></a>
+                            <form action="/app/<%=currentUser.fits[i]._id%>?_method=DELETE" method="POST">
+                                <input type="submit" id="delete-btn" value="DELETE" />
                             </form>
-                        </li>
-                    <% } %>
-                </ul>
+                            </li>
+                            <% } %>
+                                </ul>
             </div>
         </div>
     </body>

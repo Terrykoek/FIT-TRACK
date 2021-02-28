@@ -7,7 +7,6 @@
         <div class="header">
             <div class="header-exercise">
              
-                <a href="/">fit Stopper</a>
             </div>
         </div>
         <div class="header-nav">
@@ -27,49 +26,42 @@
         <div class="exercise">
             <h1><%=fit.exercise%></h1>
         </div>
-        <div class="fit-container">
-            <div class="fit-item">
-                <img
-                    id="fit-img"
-                    src="<%=fit.url%>
-                "
-                    alt="<%=fit.exercise%>"
-                />
-                <br />
-                <div class="fit-info">
-                    <span id="category">Category: <%=fit.category%></span
-                    ><br />
-                    <span id="type">type <%=fit.type%></span>
-                    <span id="calories">calories <%=fit.calories%></span><br />
-                    <span id="completed">
-                        <% if(fit.completed === true) { %> Completed Series:
-                        &#10003; <% } else { %> Completed Series: &#10008; <% }
-                        %>
-                    </span>
-                    <br />
-                    <br />
-                    <div class="fit-btns">
-                        <a href="/app/<%=fit._id%>/edit"
-                            ><button id="edit">Edit</button></a
-                        >
-                        <form
-                            action="/app/<%=fit.
-                _id%>?_method=DELETE"
-                            method="POST"
-                        >
-                            <input
-                                type="submit"
-                                id="delete-btn"
-                                value="DELETE"
-                            />
-                        </form>
+        <div class="type">
+            <h1><%=fit.type%></h1>
+        </div>
+        <div class="location">
+            <h1><%=fit.location%></h1>
+        </div>
+        <div class="Date">
+            <h1><%=fit.date%></h1>
+        </div>
+        <div class="calories">
+            <h1><%=fit.calories%></h1>
+        </div>
+        <div class="completed">
+            <h1><%=fit.completed%></h1>
+        </div>
+        <div class="description">
+            <h1><%=fit.description%></h1>
+        </div>
+        <br />
+        <div class="show-btns">
+            <a href="/app/<%=fit._id%>/edit"
+                ><button id="edit">Edit</button></a
+            >
+        <form
+        action="/app/<%=fit.
+_id%>?_method=DELETE"
+        method="POST"
+    >
+        <input
+            type="submit"
+            id="delete-btn"
+            value="DELETE"
+        />
+    </form>
                     </div>
                 </div>
             </div>
-            <div class="fit-reviews">
-                <h3>description:</h3>
-                <div class="review"><p><%=fit.reviews%></p></div>
-            </div>
-        </div>
     </body>
 </html>

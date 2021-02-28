@@ -11,7 +11,6 @@ const userSchema = Schema(
                 type: {type: String },
                 location: {type: String },
                 date: {type: Date },
-                img: {type: String },
                 calories: {type: Number, min: 1},
                 completed: { type: Boolean, default: false },
                 description: { type: String },

@@ -42,9 +42,8 @@ mongoose.connection.on('connected', () =>
 );
 mongoose.connection.on('disconnected', () => console.log('mongo disconnected'));
 
-// check auth
+//authentication
 const isAuthenticated = (req, res, next) => {
-    // console.log(req.session.currentUser);
     if (req.session.currentUser) {
         return next();
     } else {
@@ -56,8 +55,7 @@ app.use('/users', userController);
 app.use('/sessions', sessionsController);
 app.use('/app', appController);
 
-// Routes
-// GET INDEX - main page
+//index page
 app.get('/', (req, res) => {
     res.render('index.ejs', {
         currentUser: req.session.currentUser,
@@ -68,5 +66,5 @@ app.get('/app', isAuthenticated, (req, res) => {
     res.render('app/index.ejs');
 });
 
-// Listen
+// Listen to port
 app.listen(PORT, () => console.log('auth happening on port', PORT));
