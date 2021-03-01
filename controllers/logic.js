@@ -44,6 +44,7 @@ router.post('/', (req, res) => {
                     date: req.body.date,
                     calories: req.body.calories,
                     completed: req.body.completed,
+                    description: req.body.description,
                 },
             },
         },
@@ -113,7 +114,7 @@ router.get('/:id/edit', (req, res) => {
 });
 
 //put route
-router.put('/:id', (req, res) => {
+router.put('/:id/update', (req, res) => {
     const locate = req.body.location;
     const location = locate.split(',');
     const userID = req.session.currentUser._id;
@@ -121,7 +122,7 @@ router.put('/:id', (req, res) => {
     if (req.body.completed === 'on') {
         req.body.completed = true;
     }
-    User.updateOne(
+    User.findOneAndUpdate(
         { _id: userID, 'fits._id': fitID },
         {
             $set: {
@@ -142,6 +143,6 @@ router.put('/:id', (req, res) => {
     );
 });
 
-router.put('/:id', (req, res) => {});
+// router.put('/:id', (req, res) => {});
 
 module.exports = router;

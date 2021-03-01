@@ -31,7 +31,7 @@ app.use(
 );
 
 // MondoDB connect
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 mongoose.connection.once('open', () => {
     console.log(`connected to Mongo`);
 });

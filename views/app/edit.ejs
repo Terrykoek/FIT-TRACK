@@ -28,7 +28,7 @@
     </div>
     <div class="edit-container">
         <div class="edit-form">
-            <form action="/app/<%=fit.id%>?_method=PUT" method="POST">
+            <form action="/app/<%=fit._id%>/update/?_method=PUT" method="POST">
                 Exercise:
                 <input type="text" name="exercise" value="<%=fit.exercise%>" /><br />
                 Type:
