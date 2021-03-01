@@ -28,7 +28,7 @@
     </div>
     <div class="edit-container">
         <div class="edit-form">
-            <form action="/app/<%=fit._id%>/update/?_method=PUT" method="POST">
+            <form action="/app/<%=fit._id%>/update?_method=PUT" method="POST">
                 Exercise:
                 <input type="text" name="exercise" value="<%=fit.exercise%>" /><br />
                 Type:
@@ -36,14 +36,14 @@
                 Location:
                 <input type="text" name="location" value="<%=fit.location%>" /><br />
                 Date:
-                <input type="date" name="Date" value="<%=fit.date%>" /><br />
+                <input type="date" name="date" value="<%=fit.date%>" /><br />
                 Calories burned:
                 <input type="text" name="calories" value="<%=fit.calories%>" /><br />
                 Completed: <input type="checkbox" name="completed" <% if(fit.completed===true) { %> checked <% } %> />
-                    <br />
-                    Description:
-                    <input type="text" name="description" value="<%=fit.description%>" /><br />
-                    <input type="submit" name="" value="Submit" />
+                <br />
+                Description:
+                <input type="text" name="description" value="<%=fit.description%>" /><br />
+                <input type="submit" name="" value="Submit" />
             </form>
         </div>
     </div>

@@ -9,7 +9,7 @@ User Stories
 Difficulties faced
 User Stories
 RESTFUL Routes
-
+Further improvements
 
 ## Project Demo
 
@@ -40,11 +40,11 @@ started with show route for albums, then images, comments and lastly users.
 
 
 ## Difficulties faced
-
+Faced difficulties setting up edit routes
 ## User Stories
 
 ## RESTFUL Routes
 
-## Additional features
-Notifications
-Enhance users profile-
+## Further improvements
+Stronger user profile for individual user
+Notification when time for workout approaches

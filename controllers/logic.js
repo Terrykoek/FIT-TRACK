@@ -57,8 +57,6 @@ router.post('/', (req, res) => {
 
 // show route
 router.get('/:id', (req, res) => {
-    //console.log(req.session.currentUser._id);
-    //console.log(req.params._id);
     User.find(
         { _id: req.session.currentUser._id },
         {
@@ -67,9 +65,6 @@ router.get('/:id', (req, res) => {
                     _id: req.params.id,
                 },
             },
-        },
-        {
-            'fits.$': 1,
         },
         function (err, results) {
             res.render('app/show.ejs', {
@@ -84,7 +79,6 @@ router.delete('/:id', (req, res) => {
     User.findByIdAndUpdate(
         { _id: req.session.currentUser._id },
         { $pull: { fits: { _id: req.params.id } } },
-        { new: true },
         function (error, model) {
             if (error) {
                 return res.json(error);
@@ -116,33 +110,31 @@ router.get('/:id/edit', (req, res) => {
 //put route
 router.put('/:id/update', (req, res) => {
     const locate = req.body.location;
-    const location = locate.split(',');
     const userID = req.session.currentUser._id;
     const fitID = req.params.id;
     if (req.body.completed === 'on') {
         req.body.completed = true;
     }
-    User.findOneAndUpdate(
+    User.updateOne(
         { _id: userID, 'fits._id': fitID },
         {
             $set: {
                 'fits.$.exercise': req.body.exercise,
                 'fits.$.type': req.body.type,
-                'fits.$.location': location,
+                'fits.$.location': req.body.location,
                 'fits.$.date': req.body.date,
                 'fits.$.calories': req.body.calories,
                 'fits.$.completed': req.body.completed,
                 'fits.$.description': req.body.description,
-
             },
         },
         { new: true },
         (err, updatedFit) => {
-            res.redirect('/app/' + req.params.id);
+            if (updatedFit) res.redirect('/app/' + req.params.id);
+            else throw err;            
         },
     );
 });
 
-// router.put('/:id', (req, res) => {});
 
 module.exports = router;
