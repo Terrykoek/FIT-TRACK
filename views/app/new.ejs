@@ -1,44 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <%- include('../partials/head.ejs') %>
-    </head>
-    <body>
-        <div class="header">
-            <div class="header-title">
-               
-            </div>
+
+<head>
+    <%- include('../partials/head.ejs') %>
+</head>
+
+<body>
+    <div class="header">
+        <div class="header-title">
+
         </div>
-        <div class="title">
-            <h1>Create new workout</h1>
-        </div>
-        <div class="header-nav">
-            <ul>
-                <li>
-                    <form action="/sessions?_method=DELETE" method="POST">
-                        <input type="submit" value="Logout" id="logout-btn" />
-                    </form>
-                </li>
-                <li>
-                    <a href="/app">
-                        <button id="home-btn">Home</button>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="new-workout">
-            <form action="/app" method="POST">
-                Exercise (gym/run/swim): <input type="text" name="exercise" required /><br />
-                Type (cardio/strength/flexibility): <input type="text" name="type" required /><br />
-                Location: <input type="text" name="location" required /><br />
-                Date: <input type="date" name ="date" /><br />
-                Calories burned: <input type="text" name="calories" required /><br />
-                Completed : <input type="checkbox" name="completed" />
-                <br />
-                Description: <input type="text" name="description" /><br />
-                <input type="submit" name="insert" value="insert" />
-                <br />
-            </form>
-        </div>
-    </body>
+    </div>
+    <div class="title">
+        <h1>Create new workout</h1>
+    </div>
+    <div class="header-nav">
+        <ul>
+           
+            <li>
+                <a href="/app">
+                    <button id="home-btn">Home</button>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="new-workout">
+        <form action="/app" method="POST">
+            Exercise (gym/run/swim): <input type="text" name="exercise" required /><br />
+            Type (cardio/strength/flexibility): <input type="text" name="type" required /><br />
+            Location: <input type="text" name="location" required /><br />
+            Date: <input type="date" name="date" /><br />
+            Calories burned: <input type="text" name="calories" required /><br />
+            Completed : <input type="checkbox" name="completed" />
+            <br />
+            Description: <input type="text" name="description" /><br />
+            <input type="submit" name="insert" value="insert" />
+            <br />
+        </form>
+    </div>
+</body>
+
 </html>

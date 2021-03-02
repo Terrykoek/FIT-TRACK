@@ -5,38 +5,37 @@ const User = require('../models/users.js');
 
 //MIDDLEWARE
 const isAuthenticated = (req, res, next) => {
-    if (req.session.currentUser) {
+    if (req.session.currentUser) { //if its currentUser from current session return next
         return next();
     } else {
         res.redirect('/sessions/new');
     }
 };
 
-// new workout
+// GET new workout
 router.get('/new', (req, res) => {
     res.render('app/new.ejs');
 });
 
 
-// Homepage
+// GET Homepage
 router.get('/', isAuthenticated, (req, res) => {
-    // finds all users
-    User.findById({ _id: req.session.currentUser._id }, (err, currentUser) => {
+    User.findById({ _id: req.session.currentUser._id }, (err, currentUser) => { //find current user by ID
         res.render('app/index.ejs', {
             currentUser: currentUser,
         });
     });
 });
 
-// create route
+// POST create route
 router.post('/', (req, res) => {
     if (req.body.completed === 'on') {
         req.body.completed = true;
     }
     User.findOneAndUpdate(
-        { _id: req.session.currentUser._id },
+        { _id: req.session.currentUser._id },//find currentUser and push fits data into the currentUser session
         {
-            $push: {
+            $push: { //$push in the fits array data
                 fits: {
                     exercise: req.body.exercise,
                     type: req.body.type,
@@ -48,14 +47,13 @@ router.post('/', (req, res) => {
                 },
             },
         },
-        (error, newFit) => {
+        (err, newFits) => {
             res.redirect('/app');
         },
     );
 });
 
-
-// show route
+// GET show route
 router.get('/:id', (req, res) => {
     User.find(
         { _id: req.session.currentUser._id },
@@ -74,12 +72,15 @@ router.get('/:id', (req, res) => {
     );
 });
 
+
+
+
 // Delete route
 router.delete('/:id', (req, res) => {
-    User.findByIdAndUpdate(
+    User.findByIdAndUpdate( //find currentUser id and removes the elements and redirect to /app page
         { _id: req.session.currentUser._id },
-        { $pull: { fits: { _id: req.params.id } } },
-        function (error, model) {
+        { $pull: { fits: { _id: req.params.id } } }, //$pull to remove existing fits array
+        function (error, para) {
             if (error) {
                 return res.json(error);
             } else {
@@ -89,7 +90,9 @@ router.delete('/:id', (req, res) => {
     );
 });
 
-// edit route
+
+
+// GET edit route
 router.get('/:id/edit', (req, res) => {
     User.find(
         { _id: req.session.currentUser._id },
@@ -107,9 +110,8 @@ router.get('/:id/edit', (req, res) => {
     );
 });
 
-//put route
+//GET put route
 router.put('/:id/update', (req, res) => {
-    const locate = req.body.location;
     const userID = req.session.currentUser._id;
     const fitID = req.params.id;
     if (req.body.completed === 'on') {
@@ -118,7 +120,8 @@ router.put('/:id/update', (req, res) => {
     User.updateOne(
         { _id: userID, 'fits._id': fitID },
         {
-            $set: {
+            // The $set operator replaces the value of a field with the specified value.
+            $set: { 
                 'fits.$.exercise': req.body.exercise,
                 'fits.$.type': req.body.type,
                 'fits.$.location': req.body.location,
@@ -128,7 +131,6 @@ router.put('/:id/update', (req, res) => {
                 'fits.$.description': req.body.description,
             },
         },
-        { new: true },
         (err, updatedFit) => {
             if (updatedFit) res.redirect('/app/' + req.params.id);
             else throw err;            

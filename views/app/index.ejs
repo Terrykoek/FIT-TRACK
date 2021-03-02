@@ -23,8 +23,9 @@
     </div>
     <div class="index-container">
         <div class="index-add">
-            <a href="/app/new"><button id="index-add">Add New exercise</button></a>
+            <a href="/app/new"><button id="add">Add New exercise</button></a>
             <ul id="index-ul">
+                <!-- to access currentUser's fits info -->
                 <% for(let i=0; i <currentUser.fits.length; i++) { %>
                     <li class="index-show">
                         Exercise: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-info">
@@ -40,7 +41,7 @@
                         </a>
                         <br />
                         Date: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-info">
-                            <%=currentUser.fits[i].date; %>
+                            <%=currentUser.fits[i].date.toDateString(); %>
                         </a>
                         <br />
                         Calories burned: <a href="/app/<%=currentUser.fits[i]._id; %>" id="index-info">

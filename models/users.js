@@ -11,7 +11,7 @@ const userSchema = Schema(
                 exercise: {type: String},
                 type: {type: String },
                 location: {type: String },
-                date: {type: Date },
+                date: {type: Date, default:Date.now },
                 calories: {type: Number, min: 1},
                 completed: { type: Boolean, default: false },
                 description: { type: String },

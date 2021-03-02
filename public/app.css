@@ -5,6 +5,7 @@ body {
     color: rgb(14, 255, 14);
     background-color:black;
     background-image: url("https://hardcoremma133302486.files.wordpress.com/2020/07/1244858.jpg"); 
+    z-index: 10;
     background-repeat: no-repeat;
     background-size: cover;  
 
@@ -24,10 +25,7 @@ body {
     text-align: center;
 }
 
-.articles{
-    margin-top: 50px;
-    margin-bottom: 70px;
-}
+
 
 
 /*Login page */
@@ -57,3 +55,9 @@ body {
     color: rgb(14, 255, 14);
 
 }
+
+input[type=button], input[type=submit], input[type=add]{
+    background-color: #000000;
+    color: rgb(14, 255, 14);
+   
+  }

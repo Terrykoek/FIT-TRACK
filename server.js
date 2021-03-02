@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const bcrypt = require('bcrypt');
-require('dotenv').config();
 const express = require('express');
 const app = express();
+require('dotenv').config();
 
 // controllers
 const userController = require('./controllers/users.js');
@@ -15,7 +15,6 @@ const appController = require('./controllers/logic.js');
 // Configuration
 const PORT = process.env.PORT || 4000;
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017';
-
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -63,7 +62,7 @@ app.get('/', (req, res) => {
         currentUser: req.session.currentUser,
     });
 });
-//Mainpage
+//Homepage
 app.get('/app', isAuthenticated, (req, res) => {
     res.render('app/index.ejs');
 });
