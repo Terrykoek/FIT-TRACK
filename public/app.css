@@ -4,10 +4,8 @@ body {
     font-family: 'PT Sans', sans-serif;
     color: rgb(14, 255, 14);
     background-color:black;
-    background-image: url("https://hardcoremma133302486.files.wordpress.com/2020/07/1244858.jpg"); 
-    z-index: 10;
-    background-repeat: no-repeat;
-    background-size: cover;  
+    margin-left: 40px;
+
 
      
 } 
@@ -51,13 +49,19 @@ body {
 }
 
 /*Index.ejs page */
-.dashboard {
+/* .dashboard {
     color: rgb(14, 255, 14);
 
-}
+} */
 
 input[type=button], input[type=submit], input[type=add]{
     background-color: #000000;
     color: rgb(14, 255, 14);
    
   }
+
+ /*style table*/
+.index-add{
+     margin-left: auto;
+  margin-right: auto;
+}
