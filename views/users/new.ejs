@@ -3,16 +3,24 @@
 
 <head>
     <%- include('../partials/head.ejs') %>
+    <style>
+       body{
+           background-color: black;
+           color:white;
+        }
+        .submit, .back{
+            background-color: #000000;
+             color: white;
+   
+        }
+        </style>
 </head>
 
 <body>
-    <div class="header">
-        <div class="header-title">
-
-        </div>
+   
     </div>
     <div class="container">
-        <br />
+        
         <h1>Account create</h1>
         <div class="row">
             <form class="col s12" action="/users" method="POST">

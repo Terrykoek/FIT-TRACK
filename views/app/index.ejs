@@ -6,25 +6,47 @@
 </head>
 
 <body>
+    <style>
+        body{
+            background-color: black;
+            color:white;
+            position: relative;
+            left: 500px;
+            text-justify:auto;
+        }
+        table{
+            position: fixed;
+            left: 110px;
+
+        }
+        .input[type=button], input[type=submit], input[type=add]{
+    background-color: #000000;
+    color: white;
+        }
+        #add, #edit{
+            color: white;
+           
+        }
+    </style>
+
     <div class="header">
         <h1>
-            <%=currentUser.username%>'s Home Page
-        </h1>
+            <%=currentUser.username%>'s plan
+        </h1><br/>
     </div>
     </div>
     <div class="header-nav">
-        <ul>
-            <li>
+      
+           
                 <form action="/sessions?_method=DELETE" method="POST">
                     <input type="submit" value="Logout" id="logout-btn" />
                 </form>
-            </li>
-        </ul>
+        
     </div>
     <div class="index-container">
         <div class="index-add">
-            <a href="/app/new"><button id="add">Add New exercise</button></a>
-            <ul id="index-ul">
+            <a href="/app/new"><button id="add">Add New exercise</button></a><br/>
+            <ul id="index-ul"><br/><br/>
                 <!-- to access currentUser's fits info -->
                 <table class="table table-dark table-hover">
                     <thead>
@@ -72,12 +94,10 @@
                                 </td>
                                 <td>
                                     <a href="/app/<%=currentUser.fits[i]._id%>/edit"><button id="edit">EDIT</button></a>
-                                </td>
-                                <td>
                                     <form action="/app/<%=currentUser.fits[i]._id%>?_method=DELETE" method="POST">
                                         <input type="submit" id="delete-btn" value="DELETE" />
                                     </form>
-                                </td>
+                                </td>  
                           </tr>
                       </tbody>     
                     <% } %> 

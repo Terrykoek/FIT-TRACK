@@ -3,6 +3,16 @@
 
 <head>
     <%- include('../partials/head.ejs') %>
+    <style>
+        body{
+            background-color: black;
+            color:white;
+         }
+         .submit, .back{
+             background-color: #000000;
+              color: white;    
+         }
+         </style>
 </head>
 
 <body>
@@ -27,9 +37,12 @@
                     </div>
                 </div>
                 <br />
-                <button class="enter" type="submit" name="action">
-                    Enter
-                </button>
+                <a href="/app">
+                    <button id="enter" type="submit" name="action">
+                        Enter
+                    </button>
+            </a href>
+               
             </form>
         </div>
     </div>

@@ -6,6 +6,23 @@
 </head>
 
 <body>
+    <style>
+        body{
+            background-color: black;
+            color:white;
+            text-align: center;
+            text-justify:auto;
+
+        }
+        button{
+    background-color: #000000;
+    color: white;
+        }
+        #add, #edit{
+            color: white;
+        }
+    </style>
+
     <div class="header">
         <div class="header-title">
 
@@ -15,25 +32,23 @@
         <h1>Create new workout</h1>
     </div>
     <div class="header-nav">
-        <ul>
-           
-            <li>
+        
+         
                 <a href="/app">
                     <button id="home-btn">Home</button>
-                </a>
-            </li>
-        </ul>
-    </div>
+                </a><br/>
+            
+    </div><br /><br />
     <div class="new-workout">
         <form action="/app" method="POST">
-            Exercise (gym/run/swim): <input type="text" name="exercise" required /><br />
-            Type (cardio/strength/flexibility): <input type="text" name="type" required /><br />
-            Location: <input type="text" name="location" required /><br />
-            Date: <input type="date" name="date" /><br />
-            Calories burned: <input type="text" name="calories" required /><br />
+            Exercise (gym/run/swim): <input type="text" name="exercise" required /><br /><br />
+            Type (cardio/strength/flexibility): <input type="text" name="type" required /><br /><br />
+            Location: <input type="text" name="location" required /><br /><br />
+            Date: <input type="date" name="date" /><br /><br />
+            Calories burned: <input type="text" name="calories" required /><br /><br />
             Completed : <input type="checkbox" name="completed" />
-            <br />
-            Description: <input type="text" name="description" /><br />
+            <br /><br />
+            Description: <input type="text" name="description" /><br /><br />
             <input type="submit" name="insert" value="insert" />
             <br />
         </form>

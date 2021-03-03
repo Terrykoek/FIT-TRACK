@@ -13,7 +13,7 @@ const userSchema = Schema(
                 location: {type: String },
                 date: {type: Date, default:Date.now },
                 calories: {type: Number, min: 1},
-                completed: { type: Boolean, default: false },
+                completed: { type: Boolean, default: false},
                 description: { type: String },
             },
         ],

@@ -1,86 +1,84 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
+<title>FitnessTracker</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+  background-image: url('https://hardcoremma133302486.files.wordpress.com/2020/07/1244858.jpg');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+.login{
+    position: absolute;
+  left: 20px;
+  top: 50px;}
 
-<head>
-    <%- include('./partials/head.ejs')%>
-</head>
+.fit{
+      font-size: 40px;
+      position:absolute;
+      left:20px
 
+  }
+  .main-col{
+    position:absolute;
+    top:70px;
+    left:20px
+  }
+
+</style>
 <body>
-    <style>
-        body {
-            background-image: url("https://hardcoremma133302486.files.wordpress.com/2020/07/1244858.jpg");
-            z-index: 10;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
 
-        .topnav {
-            text-align: left;
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+  <div class="fit">
+   FIT-TRACK
+  </div>
 
-        }
-
-        .container {
-            overflow-wrap: normal;
-            width: 500px;
-            font-size: 30px;
-            margin-left: 1px;
-
-        }
-
-        .login {
-            margin-left: 40px;
-        }
-
-        h2 {
-            margin-left: 40px;
-        }
-    </style>
-    <div class="topnav">
-        <a class="fittrack">FIT-TRACK</a>
-    </div>
+  <div class="main-container">
+    <div class="main-col">
+        <h2>
+            <% if(currentUser) { %> Hello <%=currentUser.username%>!
+                    Let's get started!
+                    <br />
+                    <a class="dashboard" href="/app">
+                        <input type="submit" value="Enter" Home Page />
+                    </a>
+                    <form action="/sessions?_method=DELETE" method="POST">
+                        <input type="submit" value="Logout" id="logout-btn" />
+                    </form>
+        </h2>
+        <% } else { %>
+            <!-- <h1>Tired of not sticking to your workout plans?</h1> -->
+            <div class="container">
+            
+            </div>
     </div>
 
-    <div class="main-container">
-        <div class="main-col">
-            <h2>
-                <% if(currentUser) { %> Hello <%=currentUser.username%>!
-                        Let's get started!
-                        <br />
-
-                        <a class="dashboard" href="/app">
-                            <input type="submit" value="Enter" Home Page />
-                        </a>
-
-                        <form action="/sessions?_method=DELETE" method="POST">
-                            <input type="submit" value="Logout" id="logout-btn" />
-                        </form>
-            </h2>
-            <% } else { %>
-                <!-- <h1>Tired of not sticking to your workout plans?</h1> -->
-                <div class="container">
-                    <p>
-                        ABOUT US<br>
-                        FIT-TRACK is an app to track and manage all your workout plans. <br>
-                        With a click of a button, you can easily plan your future workouts and check them off when its
-                        completed! <br>
-                        Start getting your dream body today!
-                    </p>
-
-                </div>
-        </div>
-        <div class="login">
-            <h3>Login to your account</h3>
-            <a href="/sessions/new">
-                <button id="login">Log In</button>
-            </a>
-            <br />
-            <h3>Join us</h3>
-            <a href="/users/new">
-                <button id="login">Register</button>
-            </a>
-            <% } %>
-        </div>
-    </div>
+  <div class="w3-display-middle">
+    <h1 class="w3-jumbo w3-animate-top">ABOUT US</h1>
+    <hr class="w3-border-grey" style="margin:auto;width:40%">
+    <p class="w3-large w3-center">FIT-TRACK is an app to track and manage all your workout plans.
+With a click of a button, you can easily plan your future workouts and check them off when its completed!
+Start getting your dream body today!</p>
+  </div>
+  <div class="login">
+    <h3>Login to your account</h3>
+    <a href="/sessions/new">
+        <button id="login">Log In</button>
+    </a>
+    <br />
+    <h3>Join us</h3>
+    <a href="/users/new">
+        <button id="login">Register</button>
+    </a>
+    <% } %>
+</div>
+</div>
+ 
 </body>
-
 </html>
