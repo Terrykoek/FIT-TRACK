@@ -44,6 +44,7 @@ Faced difficulties setting up edit routes
 ## User Stories
 
 ## RESTFUL Routes
+1. Index 
 
 ## Further improvements
 Stronger user profile for individual user

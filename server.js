@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
+const moment = require('moment');
 require('dotenv').config();
 
 // controllers
@@ -56,13 +57,13 @@ app.use('/users', userController);
 app.use('/sessions', sessionsController);
 app.use('/app', appController);
 
-//index page
+//Index route for mainpage
 app.get('/', (req, res) => {
     res.render('index.ejs', {
         currentUser: req.session.currentUser,
     });
 });
-//Homepage
+//Index route for Homepage
 app.get('/app', isAuthenticated, (req, res) => {
     res.render('app/index.ejs');
 });

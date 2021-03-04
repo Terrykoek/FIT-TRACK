@@ -1,4 +1,4 @@
-const  Mongoose  = require('mongoose');
+const Mongoose = require('mongoose');
 const express = require('express');
 const routes = express.Router();
 const User = require('../models/users.js');
@@ -58,11 +58,7 @@ routes.get('/:id', (req, res) => {
     User.find(
         { _id: req.session.currentUser._id },//find data in array and showarray
         {
-            fits: {
-                $elemMatch: {
-                    _id: req.params.id,
-                },
-            },
+            fits: { $elemMatch: { _id: req.params.id, }, },
         },
         function (err, results) {
             res.render('app/show.ejs', {
@@ -96,32 +92,26 @@ routes.delete('/:id', (req, res) => {
 routes.get('/:id/edit', (req, res) => {
     User.find(
         { _id: req.session.currentUser._id },
-        {
-            fits: {
-                $elemMatch: { _id: req.params.id }, 
-            },
-        },
+        { fits: { $elemMatch: { _id: req.params.id }, }, },
         { 'fits.$': 1 },
         function (error, user) {
-            res.render('app/edit.ejs', {
-                fit: user[0].fits[0],
-            });
+            res.render('app/edit.ejs', { fit: user[0].fits[0], });
         },
     );
 });
 
 //GET put route
 routes.put('/:id/update', (req, res) => {
-    const userID = req.session.currentUser._id;
-    const fitID = req.params.id;
+    const userid = req.session.currentUser._id;
+    const fitid = req.params.id;
     if (req.body.completed === 'on') {
         req.body.completed = true;
     }
     User.updateOne(
-        { _id: userID, 'fits._id': fitID },
+        { _id: userid, 'fits._id': fitid },
         {
             // The $set operator replaces the value of a field with the specified value.
-            $set: { 
+            $set: {
                 'fits.$.exercise': req.body.exercise,
                 'fits.$.type': req.body.type,
                 'fits.$.location': req.body.location,
@@ -133,7 +123,7 @@ routes.put('/:id/update', (req, res) => {
         },
         (err, updatedFit) => {
             if (updatedFit) res.redirect('/app/' + req.params.id);
-            else throw err;            
+            else throw err;
         },
     );
 });
