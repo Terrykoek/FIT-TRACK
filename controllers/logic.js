@@ -33,7 +33,7 @@ routes.post('/', (req, res) => {
         req.body.completed = true;
     }
     User.findOneAndUpdate(
-        { _id: req.session.currentUser._id },//find object in currentUser and update-push fits data into the currentUser session
+        { _id: req.session.currentUser._id },//find currentUser and push fits data into the currentUser session
         {
             $push: { //$push in the fits array data
                 fits: {
@@ -56,7 +56,7 @@ routes.post('/', (req, res) => {
 // GET show route
 routes.get('/:id', (req, res) => {
     User.find(
-        { _id: req.session.currentUser._id }, //find data in array and showarray
+        { _id: req.session.currentUser._id },//find data in array and showarray
         {
             fits: {
                 $elemMatch: {
@@ -64,13 +64,15 @@ routes.get('/:id', (req, res) => {
                 },
             },
         },
-        function (err, showArray) {
+        function (err, results) {
             res.render('app/show.ejs', {
-                fit: showArray[0].fits[0],
+                fit: results[0].fits[0],
             });
         },
     );
 });
+
+
 
 
 // Delete route
@@ -78,7 +80,7 @@ routes.delete('/:id', (req, res) => {
     User.findByIdAndUpdate( //find currentUser id and removes the elements and redirect to /app page
         { _id: req.session.currentUser._id },
         { $pull: { fits: { _id: req.params.id } } }, //$pull to remove existing fits array
-        function (error) {
+        function (error, para) {
             if (error) {
                 return res.json(error);
             } else {
@@ -89,18 +91,20 @@ routes.delete('/:id', (req, res) => {
 });
 
 
+
 // GET edit route
 routes.get('/:id/edit', (req, res) => {
     User.find(
         { _id: req.session.currentUser._id },
         {
             fits: {
-                $elemMatch: { _id: req.params.id }, //matches data in fits array with 
+                $elemMatch: { _id: req.params.id }, 
             },
         },
-        function (error, showArray) {
+        { 'fits.$': 1 },
+        function (error, user) {
             res.render('app/edit.ejs', {
-                fit: showArray[0].fits[0],
+                fit: user[0].fits[0],
             });
         },
     );
