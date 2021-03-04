@@ -10,7 +10,7 @@ users.get('/new', (req, res) => {
     res.render('users/new.ejs');
 });
 
-// Bcrypt post user
+// Bcrypt password
 users.post('/', (req, res) => {
     req.body.password = bcrypt.hashSync(
         req.body.password,

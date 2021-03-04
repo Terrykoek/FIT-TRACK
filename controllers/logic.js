@@ -1,9 +1,9 @@
 const  Mongoose  = require('mongoose');
 const express = require('express');
-const router = express.Router();
+const routes = express.Router();
 const User = require('../models/users.js');
 
-//MIDDLEWARE
+//middleware
 const isAuthenticated = (req, res, next) => {
     if (req.session.currentUser) { //if its currentUser from current session return next
         return next();
@@ -13,13 +13,13 @@ const isAuthenticated = (req, res, next) => {
 };
 
 // GET new workout
-router.get('/new', (req, res) => {
+routes.get('/new', (req, res) => {
     res.render('app/new.ejs');
 });
 
 
 // GET Homepage
-router.get('/', isAuthenticated, (req, res) => {
+routes.get('/', isAuthenticated, (req, res) => {
     User.findById({ _id: req.session.currentUser._id }, (err, currentUser) => { //find current user by ID
         res.render('app/index.ejs', {
             currentUser: currentUser,
@@ -28,12 +28,12 @@ router.get('/', isAuthenticated, (req, res) => {
 });
 
 // POST create route
-router.post('/', (req, res) => {
+routes.post('/', (req, res) => {
     if (req.body.completed === 'on') {
         req.body.completed = true;
     }
     User.findOneAndUpdate(
-        { _id: req.session.currentUser._id },//find currentUser and push fits data into the currentUser session
+        { _id: req.session.currentUser._id },//find object in currentUser and update-push fits data into the currentUser session
         {
             $push: { //$push in the fits array data
                 fits: {
@@ -47,16 +47,16 @@ router.post('/', (req, res) => {
                 },
             },
         },
-        (err, newFits) => {
+        () => {
             res.redirect('/app');
         },
     );
 });
 
 // GET show route
-router.get('/:id', (req, res) => {
+routes.get('/:id', (req, res) => {
     User.find(
-        { _id: req.session.currentUser._id },
+        { _id: req.session.currentUser._id }, //find data in array and showarray
         {
             fits: {
                 $elemMatch: {
@@ -64,9 +64,9 @@ router.get('/:id', (req, res) => {
                 },
             },
         },
-        function (err, results) {
+        function (err, showArray) {
             res.render('app/show.ejs', {
-                fit: results[0].fits[0],
+                fit: showArray[0].fits[0],
             });
         },
     );
@@ -74,13 +74,12 @@ router.get('/:id', (req, res) => {
 
 
 
-
 // Delete route
-router.delete('/:id', (req, res) => {
+routes.delete('/:id', (req, res) => {
     User.findByIdAndUpdate( //find currentUser id and removes the elements and redirect to /app page
         { _id: req.session.currentUser._id },
         { $pull: { fits: { _id: req.params.id } } }, //$pull to remove existing fits array
-        function (error, para) {
+        function (error) {
             if (error) {
                 return res.json(error);
             } else {
@@ -91,27 +90,25 @@ router.delete('/:id', (req, res) => {
 });
 
 
-
 // GET edit route
-router.get('/:id/edit', (req, res) => {
+routes.get('/:id/edit', (req, res) => {
     User.find(
         { _id: req.session.currentUser._id },
         {
             fits: {
-                $elemMatch: { _id: req.params.id },
+                $elemMatch: { _id: req.params.id }, //matches data in fits array with 
             },
         },
-        { 'fits.$': 1 },
-        function (error, user) {
+        function (error, showArray) {
             res.render('app/edit.ejs', {
-                fit: user[0].fits[0],
+                fit: showArray[0].fits[0],
             });
         },
     );
 });
 
 //GET put route
-router.put('/:id/update', (req, res) => {
+routes.put('/:id/update', (req, res) => {
     const userID = req.session.currentUser._id;
     const fitID = req.params.id;
     if (req.body.completed === 'on') {
@@ -139,4 +136,4 @@ router.put('/:id/update', (req, res) => {
 });
 
 
-module.exports = router;
+module.exports = routes;

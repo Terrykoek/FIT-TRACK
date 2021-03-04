@@ -13,7 +13,7 @@ const sessionsController = require('./controllers/sessions.js');
 const appController = require('./controllers/logic.js');
 
 // Configuration
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017';
 
 // Middleware

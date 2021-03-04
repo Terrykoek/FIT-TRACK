@@ -1,4 +1,4 @@
-# FITNESS TRACKER
+# FIT TRACK
 
 ## Table of Content
 Project Demo

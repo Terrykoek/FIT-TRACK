@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userSchema = Schema(
+const userSchema = Schema( //_id
     {
         username: { type: String, required: true },
         password: { type: String, required: true },
         
-        fits: [
+        fits: [ //fits array
             {
                 exercise: {type: String},
                 type: {type: String },
