@@ -73,7 +73,6 @@ routes.get('/:id', (req, res) => {
 });
 
 
-
 // Delete route
 routes.delete('/:id', (req, res) => {
     User.findByIdAndUpdate( //find currentUser id and removes the elements and redirect to /app page
