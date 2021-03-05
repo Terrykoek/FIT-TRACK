@@ -96,7 +96,17 @@ As a user, i want to be able to delete my workouts.
 
 
 ## RESTFUL Routes
-1
+| No | Route | URL | HTTP Verb | Description |
+| ---- | ---- | ---- | -----| ----- |
+| 1 | Index | / | GET | Mainpage |
+|  |  | /app | GET| Homepage |
+| 2 | New | users/new | GET | Create Account Page |
+|  | ---- | ---- | -----| ----- |
+| ---- | ---- | ---- | -----| ----- |
+| ---- | ---- | ---- | -----| ----- |
+| ---- | ---- | ---- | -----| ----- |
+| ---- | ---- | ---- | -----| ----- |
+
 
 ## Further improvements
 * Checkbox instead of true or false under completed column
