@@ -37,7 +37,7 @@ This application alows users to create and manage their workout plans
 1. Mainpage
 
 As a user, i want to know what this application is about when i access the website at a glance.
-<a href="https://github.com/Terrykoek/FIT-TRACK/blob/master/Mainpage.PNG" target="_blank" ><img src="https://github.com/Terrykoek/FIT-TRACK/blob/master/Mainpage.PNG" width="70%"></a>
+<a href="https://github.com/Terrykoek/FIT-TRACK/blob/master/Mainpage.PNG" target="_blank" ><img src="https://github.com/Terrykoek/FIT-TRACK/blob/master/Mainpage.PNG" width="90%"></a>
 
 
 ## Difficulties faced
