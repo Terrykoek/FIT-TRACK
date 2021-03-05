@@ -6,7 +6,7 @@ const userSchema = Schema( //_id
         username: { type: String, required: true },
         password: { type: String, required: true },
         
-        fits: [ //fits array
+        fits: [ //fits array consisting of objects
             {
                 exercise: {type: String},
                 type: {type: String },

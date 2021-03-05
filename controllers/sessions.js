@@ -2,13 +2,16 @@ const User = require('../models/users.js');
 const bcrypt = require('bcrypt');
 const express = require('express');
 const sessions = express.Router();
+const moment = require('moment');
 
 // new sessions
 sessions.get('/new', (req, res) => {
     res.render('sessions/new.ejs');
 });
 
-// POST error for new session
+// Post verb to post log in session
+//using findOne query to find username of user
+//compareSync to compare password to hashe value to see if they are the same and redurect to / page
 sessions.post('/', (req, res) => {
     User.findOne({ username: req.body.username }, (error, userFound) => {
         if (error) {
@@ -26,7 +29,7 @@ sessions.post('/', (req, res) => {
     });
 });
 
-//Destroy sessions and redirect
+//Destroy route with delete verb
 sessions.delete('/', (req, res) => {
     req.session.destroy(() => {
         res.redirect('/');

@@ -28,6 +28,7 @@ This application alows users to create and manage their workout plans
 * Bootstrap is used for front-end framework containing HTML and CSS based design templates
 * Dotenv is used as a zero-dependency module that loads environment variables from a .env file into process.env.
 * EJS is used as the templating engine and allows generating HTML with plain javascript
+* Express is a backend web application framework for Node.js
 * Express-session is used to store user state and every user will be assigned a unique session
 * Method-override to allow us to use HTTP verbs such as PUT and DELETE in places where the client doesn't support it
 * Moment.js is used as a wrapper for the native JavaScript Date object
@@ -108,7 +109,7 @@ As a user, i want to be able to delete my workouts.
 | 5 | Edit | /:id/edit | GET | Edit Workout Page |
 | 6 | Update | /:id/update | PUT | Update Workout Data |
 | 7 | Destroy | / | DELETE | Destroys sessions and redirect to Mainpage |
-|  |  | /:id | DELETE | Deelete workout data and redirect to Indexpage |
+|  |  | /:id | DELETE | Delete workout data and redirect to Indexpage |
 
 
 

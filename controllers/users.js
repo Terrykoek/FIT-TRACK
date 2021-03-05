@@ -6,11 +6,13 @@ const users = express.Router();
 
 
 // new user 
+//new route using GET method
 users.get('/new', (req, res) => {
     res.render('users/new.ejs');
 });
 
 // Bcrypt password for new user
+// salting the password of user
 users.post('/', (req, res) => {
     req.body.password = bcrypt.hashSync(
         req.body.password,
