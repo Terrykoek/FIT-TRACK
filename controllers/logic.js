@@ -60,9 +60,7 @@ routes.post('/', (req, res) => {
 routes.get('/:id', (req, res) => {
     User.find(
         { _id: req.session.currentUser._id },//find data in array and showarray
-        {
-            fits: { $elemMatch: { _id: req.params.id, }, }, //matches documents in fits array to the id and params.id
-        },
+        {fits: { $elemMatch: { _id: req.params.id, }, }, },//matches documents in fits array to the id and params.id
         //render to show page with fit array 
         function (err, results) {
             res.render('app/show.ejs', {
@@ -71,7 +69,6 @@ routes.get('/:id', (req, res) => {
         },
     );
 });
-
 
 
 
@@ -96,7 +93,7 @@ routes.delete('/:id', (req, res) => {
 routes.get('/:id/edit', (req, res) => {
     User.find(
         { _id: req.session.currentUser._id },
-        { fits: { $elemMatch: { _id: req.params.id }, }, },
+        { fits: { $elemMatch: { _id: req.params.id }, }, },//matches documents in fits array to the id and params.id
         { 'fits.$': 1 }, //$ operator to limit the content of fits array to only match the first elements
         function (error, user) {
             res.render('app/edit.ejs', { fit: user[0].fits[0], });
