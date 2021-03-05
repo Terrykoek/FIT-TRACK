@@ -1,15 +1,15 @@
 # FIT TRACK
 
 ## Table of Content
-Application Link
-Application Description
-Technologies
-Dependencies
-Wireframes and User Stories
-Difficulties faced
-User Stories
-RESTFUL Routes
-Further improvements
+* Application Link
+* Application Description
+* Technologies
+* Dependencies
+* Wireframes and User Stories
+* Difficulties faced
+* User Stories
+* RESTFUL Routes
+* Further improvements
 
 ## Application Link
 https://terryfittrack.herokuapp.com/
@@ -37,7 +37,7 @@ This application alows users to create and manage their workout plans
 1. Mainpage
 
 As a user, i want to know what this application is about when i access the website at a glance.
-<a href="https://github.com/Terrykoek/racing-car-game/blob/main/wireframe1.PNG" target="_blank" ><img src="https://github.com/Terrykoek/racing-car-game/blob/main/wireframe1.PNG" width="70%"></a>
+<a href="https://github.com/Terrykoek/FIT-TRACK/blob/master/Mainpage.PNG" target="_blank" ><img src="https://github.com/Terrykoek/FIT-TRACK/blob/master/Mainpage.PNG" width="70%"></a>
 
 
 ## Difficulties faced
