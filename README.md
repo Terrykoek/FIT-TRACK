@@ -15,7 +15,7 @@
 https://terryfittrack.herokuapp.com/
 
 ## Application Description
-This application alows users to create and manage their workout plans
+This application alows users to create and manage their workout plans.
 
 ## Technologies
 * A working full-stack application using Node.js, MongoDB, Express and EJS
