@@ -34,10 +34,11 @@ This application alows users to create and manage their workout plans
 * Mongoose is used as a schema-based solution to model the application data. It manages relationships between data, provides schema validation, and is used to translate between object in code and the representation of those objects in MongoDB
 
 ## Wireframes and User Stories
-1. Mainpage
+
+# 1. Mainpage
 
 As a user, i want to know what this application is about when i access the website at a glance.
-<a href="https://github.com/Terrykoek/FIT-TRACK/blob/master/Mainpage.PNG" target="_blank" ><img src="https://github.com/Terrykoek/FIT-TRACK/blob/master/Mainpage.PNG" width="90%"></a>
+<a href="https://github.com/Terrykoek/FIT-TRACK/blob/master/Mainpage.PNG" target="_blank" ><img src="https://github.com/Terrykoek/FIT-TRACK/blob/master/Mainpage.PNG" width="100%"></a>
 
 2. Create Account page
 
