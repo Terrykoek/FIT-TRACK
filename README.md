@@ -100,12 +100,16 @@ As a user, i want to be able to delete my workouts.
 | ---- | ---- | ---- | -----| ----- |
 | 1 | Index | / | GET | Mainpage |
 |  |  | /app | GET| Homepage |
-| 2 | New | users/new | GET | Create Account Page |
-|  | ---- | ---- | -----| ----- |
-| ---- | ---- | ---- | -----| ----- |
-| ---- | ---- | ---- | -----| ----- |
-| ---- | ---- | ---- | -----| ----- |
-| ---- | ---- | ---- | -----| ----- |
+| 2 | New | /users/new | GET | Create Account Page |
+|  |  | /sessions/new | GET | Log In Page |
+|  |  | /app/new | GET| New Workout Page |
+| 3 | Create | / | POST | Create workout data |
+| 4 | Show | /:id | GET | Show Workout Page |
+| 5 | Edit | /:id/edit | GET | Edit Workout Page |
+| 6 | Update | /:id/update | PUT | Update Workout Data |
+| 7 | Destroy | / | DELETE | Destroys sessions and redirect to Mainpage |
+|  |  | /:id | DELETE | Deelete workout data and redirect to Indexpage |
+
 
 
 ## Further improvements
